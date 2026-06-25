@@ -77,20 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "AutoMarket — Marketplace de carros usados e seminovos" },
+      { name: "description", content: "Compre e venda carros usados e seminovos com busca avançada, comparador e leads qualificados. AutoMarket: o marketplace automotivo nacional." },
+      { name: "author", content: "AutoMarket" },
+      { property: "og:title", content: "AutoMarket — Marketplace automotivo nacional" },
+      { property: "og:description", content: "Encontre o carro ideal: filtros avançados, comparador e milhares de anúncios de lojas e particulares." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@AutoMarket" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -118,8 +121,18 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AppProviders>
+        <div className="flex min-h-screen flex-col bg-background">
+          <Header />
+          <main className="flex-1 pb-20 md:pb-0">
+            <Outlet />
+          </main>
+          <Footer />
+          <BottomNav />
+          <CompareBar />
+          <Toaster richColors position="top-right" />
+        </div>
+      </AppProviders>
     </QueryClientProvider>
   );
 }
