@@ -9,6 +9,7 @@ type Ctx = {
   clearCompare: () => void;
   isCompared: (id: string) => boolean;
   unreadMessages: number;
+  clearInbox: () => void;
 };
 
 const AppCtx = createContext<Ctx | null>(null);
@@ -25,6 +26,7 @@ const readLS = (k: string): string[] => {
 export function AppProviders({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [compare, setCompare] = useState<string[]>([]);
+  const [unreadMessages, setUnread] = useState<number>(3);
 
   useEffect(() => {
     setFavorites(readLS("am.favs"));
@@ -62,8 +64,8 @@ export function AppProviders({ children }: { children: ReactNode }) {
   const isCompared = useCallback((id: string) => compare.includes(id), [compare]);
 
   const value = useMemo<Ctx>(
-    () => ({ favorites, toggleFav, isFav, compare, toggleCompare, clearCompare, isCompared, unreadMessages: 3 }),
-    [favorites, compare, toggleFav, isFav, toggleCompare, clearCompare, isCompared],
+    () => ({ favorites, toggleFav, isFav, compare, toggleCompare, clearCompare, isCompared, unreadMessages, clearInbox: () => setUnread(0) }),
+    [favorites, compare, toggleFav, isFav, toggleCompare, clearCompare, isCompared, unreadMessages],
   );
 
   return <AppCtx.Provider value={value}>{children}</AppCtx.Provider>;
