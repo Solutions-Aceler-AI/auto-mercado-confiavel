@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VeiculosRouteImport } from './routes/veiculos'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CompararRouteImport } from './routes/comparar'
 import { Route as AnunciarRouteImport } from './routes/anunciar'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,11 @@ const VeiculosRoute = VeiculosRouteImport.update({
 const FavoritosRoute = FavoritosRouteImport.update({
   id: '/favoritos',
   path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompararRoute = CompararRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anunciar': typeof AnunciarRoute
   '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anunciar': typeof AnunciarRoute
   '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/anunciar': typeof AnunciarRoute
   '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anunciar'
     | '/comparar'
+    | '/dashboard'
     | '/favoritos'
     | '/veiculos'
     | '/veiculos/$slug'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anunciar'
     | '/comparar'
+    | '/dashboard'
     | '/favoritos'
     | '/veiculos'
     | '/veiculos/$slug'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anunciar'
     | '/comparar'
+    | '/dashboard'
     | '/favoritos'
     | '/veiculos'
     | '/veiculos/$slug'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnunciarRoute: typeof AnunciarRoute
   CompararRoute: typeof CompararRoute
+  DashboardRoute: typeof DashboardRoute
   FavoritosRoute: typeof FavoritosRoute
   VeiculosRoute: typeof VeiculosRouteWithChildren
 }
@@ -121,6 +134,13 @@ declare module '@tanstack/react-router' {
       path: '/favoritos'
       fullPath: '/favoritos'
       preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/comparar': {
@@ -170,6 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnunciarRoute: AnunciarRoute,
   CompararRoute: CompararRoute,
+  DashboardRoute: DashboardRoute,
   FavoritosRoute: FavoritosRoute,
   VeiculosRoute: VeiculosRouteWithChildren,
 }
