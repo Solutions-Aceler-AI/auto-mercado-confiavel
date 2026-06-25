@@ -9,38 +9,234 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VeiculosRouteImport } from './routes/veiculos'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as InboxRouteImport } from './routes/inbox'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as AnunciarRouteImport } from './routes/anunciar'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VeiculosSlugRouteImport } from './routes/veiculos.$slug'
 
+const VeiculosRoute = VeiculosRouteImport.update({
+  id: '/veiculos',
+  path: '/veiculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InboxRoute = InboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompararRoute = CompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnunciarRoute = AnunciarRouteImport.update({
+  id: '/anunciar',
+  path: '/anunciar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VeiculosSlugRoute = VeiculosSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => VeiculosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
+  '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
+  '/login': typeof LoginRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
+  '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
+  '/login': typeof LoginRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
+  '/comparar': typeof CompararRoute
+  '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
+  '/login': typeof LoginRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/anunciar'
+    | '/cadastro'
+    | '/comparar'
+    | '/dashboard'
+    | '/favoritos'
+    | '/inbox'
+    | '/login'
+    | '/veiculos'
+    | '/veiculos/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/anunciar'
+    | '/cadastro'
+    | '/comparar'
+    | '/dashboard'
+    | '/favoritos'
+    | '/inbox'
+    | '/login'
+    | '/veiculos'
+    | '/veiculos/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/anunciar'
+    | '/cadastro'
+    | '/comparar'
+    | '/dashboard'
+    | '/favoritos'
+    | '/inbox'
+    | '/login'
+    | '/veiculos'
+    | '/veiculos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  AnunciarRoute: typeof AnunciarRoute
+  CadastroRoute: typeof CadastroRoute
+  CompararRoute: typeof CompararRoute
+  DashboardRoute: typeof DashboardRoute
+  FavoritosRoute: typeof FavoritosRoute
+  InboxRoute: typeof InboxRoute
+  LoginRoute: typeof LoginRoute
+  VeiculosRoute: typeof VeiculosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/veiculos': {
+      id: '/veiculos'
+      path: '/veiculos'
+      fullPath: '/veiculos'
+      preLoaderRoute: typeof VeiculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inbox': {
+      id: '/inbox'
+      path: '/inbox'
+      fullPath: '/inbox'
+      preLoaderRoute: typeof InboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparar': {
+      id: '/comparar'
+      path: '/comparar'
+      fullPath: '/comparar'
+      preLoaderRoute: typeof CompararRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anunciar': {
+      id: '/anunciar'
+      path: '/anunciar'
+      fullPath: '/anunciar'
+      preLoaderRoute: typeof AnunciarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +244,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/veiculos/$slug': {
+      id: '/veiculos/$slug'
+      path: '/$slug'
+      fullPath: '/veiculos/$slug'
+      preLoaderRoute: typeof VeiculosSlugRouteImport
+      parentRoute: typeof VeiculosRoute
+    }
   }
 }
 
+interface VeiculosRouteChildren {
+  VeiculosSlugRoute: typeof VeiculosSlugRoute
+}
+
+const VeiculosRouteChildren: VeiculosRouteChildren = {
+  VeiculosSlugRoute: VeiculosSlugRoute,
+}
+
+const VeiculosRouteWithChildren = VeiculosRoute._addFileChildren(
+  VeiculosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  AnunciarRoute: AnunciarRoute,
+  CadastroRoute: CadastroRoute,
+  CompararRoute: CompararRoute,
+  DashboardRoute: DashboardRoute,
+  FavoritosRoute: FavoritosRoute,
+  InboxRoute: InboxRoute,
+  LoginRoute: LoginRoute,
+  VeiculosRoute: VeiculosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
