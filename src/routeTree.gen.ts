@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VeiculosRouteImport } from './routes/veiculos'
+import { Route as InboxRouteImport } from './routes/inbox'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CompararRouteImport } from './routes/comparar'
@@ -20,6 +21,11 @@ import { Route as VeiculosSlugRouteImport } from './routes/veiculos.$slug'
 const VeiculosRoute = VeiculosRouteImport.update({
   id: '/veiculos',
   path: '/veiculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InboxRoute = InboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FavoritosRoute = FavoritosRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
+  '/inbox': typeof InboxRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
+    | '/inbox'
     | '/veiculos'
     | '/veiculos/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
+    | '/inbox'
     | '/veiculos'
     | '/veiculos/$slug'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
+    | '/inbox'
     | '/veiculos'
     | '/veiculos/$slug'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   CompararRoute: typeof CompararRoute
   DashboardRoute: typeof DashboardRoute
   FavoritosRoute: typeof FavoritosRoute
+  InboxRoute: typeof InboxRoute
   VeiculosRoute: typeof VeiculosRouteWithChildren
 }
 
@@ -127,6 +140,13 @@ declare module '@tanstack/react-router' {
       path: '/veiculos'
       fullPath: '/veiculos'
       preLoaderRoute: typeof VeiculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inbox': {
+      id: '/inbox'
+      path: '/inbox'
+      fullPath: '/inbox'
+      preLoaderRoute: typeof InboxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/favoritos': {
@@ -192,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompararRoute: CompararRoute,
   DashboardRoute: DashboardRoute,
   FavoritosRoute: FavoritosRoute,
+  InboxRoute: InboxRoute,
   VeiculosRoute: VeiculosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
