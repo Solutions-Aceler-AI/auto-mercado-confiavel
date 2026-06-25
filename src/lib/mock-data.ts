@@ -237,3 +237,42 @@ export const MOCK_KPIS = {
   pendingAds: 412,
   rejectedAds: 88,
 };
+
+export interface MockMessage { text: string; mine: boolean; time: string; }
+export interface MockConversation {
+  id: string;
+  with: string;
+  vehicle: string;
+  preview: string;
+  time: string;
+  unread: boolean;
+  messages: MockMessage[];
+}
+
+export const MOCK_CONVERSATIONS: MockConversation[] = [
+  {
+    id: "c1", with: "Ana Paula", vehicle: "Toyota Corolla 2022", preview: "Aceita troca em um Onix 2020?",
+    time: "14:22", unread: true,
+    messages: [
+      { text: "Olá! O carro ainda está disponível?", mine: false, time: "14:10" },
+      { text: "Sim! Disponível para visita.", mine: true, time: "14:15" },
+      { text: "Aceita troca em um Onix 2020?", mine: false, time: "14:22" },
+    ],
+  },
+  {
+    id: "c2", with: "Roberto Lima", vehicle: "VW T-Cross 2023", preview: "Posso agendar test drive sábado?",
+    time: "10:48", unread: true,
+    messages: [
+      { text: "Boa tarde, posso agendar test drive sábado?", mine: false, time: "10:48" },
+    ],
+  },
+  {
+    id: "c3", with: "Júlia Castro", vehicle: "Fiat Pulse 2022", preview: "Obrigada pelas fotos!",
+    time: "Ontem", unread: false,
+    messages: [
+      { text: "Pode enviar mais fotos do interior?", mine: false, time: "Ontem" },
+      { text: "Acabei de enviar por aqui.", mine: true, time: "Ontem" },
+      { text: "Obrigada pelas fotos!", mine: false, time: "Ontem" },
+    ],
+  },
+];
