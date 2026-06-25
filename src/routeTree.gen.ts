@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VeiculosRouteImport } from './routes/veiculos'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VeiculosSlugRouteImport } from './routes/veiculos.$slug'
 
 const VeiculosRoute = VeiculosRouteImport.update({
   id: '/veiculos',
@@ -22,31 +23,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VeiculosSlugRoute = VeiculosSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => VeiculosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/veiculos': typeof VeiculosRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/veiculos': typeof VeiculosRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/veiculos': typeof VeiculosRoute
+  '/veiculos': typeof VeiculosRouteWithChildren
+  '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/veiculos'
+  fullPaths: '/' | '/veiculos' | '/veiculos/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/veiculos'
-  id: '__root__' | '/' | '/veiculos'
+  to: '/' | '/veiculos' | '/veiculos/$slug'
+  id: '__root__' | '/' | '/veiculos' | '/veiculos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  VeiculosRoute: typeof VeiculosRoute
+  VeiculosRoute: typeof VeiculosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +74,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/veiculos/$slug': {
+      id: '/veiculos/$slug'
+      path: '/$slug'
+      fullPath: '/veiculos/$slug'
+      preLoaderRoute: typeof VeiculosSlugRouteImport
+      parentRoute: typeof VeiculosRoute
+    }
   }
 }
 
+interface VeiculosRouteChildren {
+  VeiculosSlugRoute: typeof VeiculosSlugRoute
+}
+
+const VeiculosRouteChildren: VeiculosRouteChildren = {
+  VeiculosSlugRoute: VeiculosSlugRoute,
+}
+
+const VeiculosRouteWithChildren = VeiculosRoute._addFileChildren(
+  VeiculosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  VeiculosRoute: VeiculosRoute,
+  VeiculosRoute: VeiculosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

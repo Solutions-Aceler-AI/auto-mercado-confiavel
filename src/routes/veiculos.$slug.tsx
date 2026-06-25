@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { Heart, Share2, MessageCircle, Phone, MapPin, Flag, ChevronLeft, ChevronRight, Star, Check } from "lucide-react";
-import { findVehicleBySlug, similarVehicles, vehicleSlug } from "@/lib/mock-data";
+import { findVehicleBySlug, similarVehicles, vehicleSlug, type Vehicle } from "@/lib/mock-data";
 import { BRL, KM } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { VehicleCard } from "@/components/VehicleCard";
@@ -34,7 +34,8 @@ export const Route = createFileRoute("/veiculos/$slug")({
 });
 
 function VehicleDetail() {
-  const { vehicle: v } = Route.useLoaderData();
+  const data = Route.useLoaderData() as { vehicle: Vehicle };
+  const v = data.vehicle;
   const { isFav, toggleFav } = useApp();
   const fav = isFav(v.id);
   const [idx, setIdx] = useState(0);
