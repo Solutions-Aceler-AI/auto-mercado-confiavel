@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VeiculosRouteImport } from './routes/veiculos'
+import { Route as CompararRouteImport } from './routes/comparar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as VeiculosSlugRouteImport } from './routes/veiculos.$slug'
 
 const VeiculosRoute = VeiculosRouteImport.update({
   id: '/veiculos',
   path: '/veiculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompararRoute = CompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const VeiculosSlugRoute = VeiculosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/comparar': typeof CompararRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/comparar': typeof CompararRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/comparar': typeof CompararRoute
   '/veiculos': typeof VeiculosRouteWithChildren
   '/veiculos/$slug': typeof VeiculosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/veiculos' | '/veiculos/$slug'
+  fullPaths: '/' | '/comparar' | '/veiculos' | '/veiculos/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/veiculos' | '/veiculos/$slug'
-  id: '__root__' | '/' | '/veiculos' | '/veiculos/$slug'
+  to: '/' | '/comparar' | '/veiculos' | '/veiculos/$slug'
+  id: '__root__' | '/' | '/comparar' | '/veiculos' | '/veiculos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompararRoute: typeof CompararRoute
   VeiculosRoute: typeof VeiculosRouteWithChildren
 }
 
@@ -65,6 +75,13 @@ declare module '@tanstack/react-router' {
       path: '/veiculos'
       fullPath: '/veiculos'
       preLoaderRoute: typeof VeiculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparar': {
+      id: '/comparar'
+      path: '/comparar'
+      fullPath: '/comparar'
+      preLoaderRoute: typeof CompararRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -98,6 +115,7 @@ const VeiculosRouteWithChildren = VeiculosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompararRoute: CompararRoute,
   VeiculosRoute: VeiculosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
