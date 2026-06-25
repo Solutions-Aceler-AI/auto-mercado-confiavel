@@ -15,6 +15,7 @@ import { Route as InboxRouteImport } from './routes/inbox'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as AnunciarRouteImport } from './routes/anunciar'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -50,6 +51,11 @@ const CompararRoute = CompararRouteImport.update({
   path: '/comparar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnunciarRoute = AnunciarRouteImport.update({
   id: '/anunciar',
   path: '/anunciar',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/anunciar': typeof AnunciarRoute
+  '/cadastro': typeof CadastroRoute
   '/comparar': typeof CompararRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/anunciar'
+    | '/cadastro'
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/anunciar'
+    | '/cadastro'
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/anunciar'
+    | '/cadastro'
     | '/comparar'
     | '/dashboard'
     | '/favoritos'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AnunciarRoute: typeof AnunciarRoute
+  CadastroRoute: typeof CadastroRoute
   CompararRoute: typeof CompararRoute
   DashboardRoute: typeof DashboardRoute
   FavoritosRoute: typeof FavoritosRoute
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompararRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anunciar': {
       id: '/anunciar'
       path: '/anunciar'
@@ -250,6 +270,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AnunciarRoute: AnunciarRoute,
+  CadastroRoute: CadastroRoute,
   CompararRoute: CompararRoute,
   DashboardRoute: DashboardRoute,
   FavoritosRoute: FavoritosRoute,
