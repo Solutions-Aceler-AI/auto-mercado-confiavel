@@ -86,11 +86,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "AutoMarket — Marketplace de carros usados e seminovos" },
       { name: "description", content: "Compre e venda carros usados e seminovos com busca avançada, comparador e leads qualificados. AutoMarket: o marketplace automotivo nacional." },
       { name: "author", content: "AutoMarket" },
-      { property: "og:title", content: "AutoMarket — Marketplace automotivo nacional" },
-      { property: "og:description", content: "Encontre o carro ideal: filtros avançados, comparador e milhares de anúncios de lojas e particulares." },
+      { property: "og:title", content: "AutoMarket — Marketplace de carros usados e seminovos" },
+      { property: "og:description", content: "Compre e venda carros usados e seminovos com busca avançada, comparador e leads qualificados. AutoMarket: o marketplace automotivo nacional." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@AutoMarket" },
+      { name: "twitter:title", content: "AutoMarket — Marketplace de carros usados e seminovos" },
+      { name: "twitter:description", content: "Compre e venda carros usados e seminovos com busca avançada, comparador e leads qualificados. AutoMarket: o marketplace automotivo nacional." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/08a4ea13-bc6e-40a3-9dd0-f2a210a70f28/id-preview-dc60a186--23b2e57b-ef49-42bd-9623-6566511bfad9.lovable.app-1782495164955.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/08a4ea13-bc6e-40a3-9dd0-f2a210a70f28/id-preview-dc60a186--23b2e57b-ef49-42bd-9623-6566511bfad9.lovable.app-1782495164955.png" },
     ],
     links: [
       {
